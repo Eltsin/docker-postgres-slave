@@ -7,8 +7,7 @@ env:
 before_script:
   - env | sort
   - image="artb1sh/postgres-replication:$VERSION"
-  - psql -c 'create database travis_ci_test;' -U postgres
-
+  - su-exec postgres psql -c 'create database travis_ci_test;'
 script:
   - docker build -t "$image" .
 
