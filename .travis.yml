@@ -1,15 +1,12 @@
-language: bash
-services: docker
+sudo: required
+services:
+  - docker
 
-env:
-  - VERSION=latest
+before_install:
+  - curl -L https://github.com/docker/compose/releases/download/1.4.0/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - docker-compose build
 
-before_script:
-  - env | sort
-  - image="artb1sh/postgres-replication:$VERSION"
-  - psql -c 'create database travis_ci_test;' -U postgres
 script:
-  - docker build -t "$image" .
-
-after_script:
-  - docker images
+  - docker-compose run pg-master ping -c 5 pg-master
