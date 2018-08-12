@@ -4,7 +4,6 @@ if [ "x$REPLICATE_FROM" == "x" ]; then
 
 cat >> ${PGDATA}/postgresql.conf <<EOF
 wal_level = hot_standby
-max_wal_senders = $PG_MAX_WAL_SENDERS
 wal_keep_segments = $PG_WAL_KEEP_SEGMENTS
 hot_standby = on
 EOF
@@ -18,6 +17,5 @@ trigger_file = '/tmp/touch_me_to_master'
 EOF
 chown postgres ${PGDATA}/recovery.conf
 chmod 600 ${PGDATA}/recovery.conf
-
 fi
 
