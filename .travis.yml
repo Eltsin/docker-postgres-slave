@@ -10,4 +10,4 @@ before_install:
   - docker-compose up -d
 
 script:
-  - docker-compose run pg-master ping -c 5 pg-master
+  - docker-compose run pg-master ping -c 5 pg-slave
