@@ -7,6 +7,7 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   - docker-compose build
+  - docker-compose up -d
 
 script:
   - docker-compose run pg-master ping -c 5 pg-master
