@@ -11,6 +11,6 @@ before_install:
 
 script:
   - docker-compose run pg-master ping -c 5 pg-slave
-  - docker exec -it dockerpostgresslave_pg-master_1 psql -U postgres -c "create database travis_ci_test;"
+  - docker ps
  
   
