@@ -27,4 +27,4 @@ jobs:
      - run:
          name: Verify it's working
          command: |
-           docker ps
+           docker exec -it tfm_pg-master_1 psql -U postgres -c "create database circleci_test;"
