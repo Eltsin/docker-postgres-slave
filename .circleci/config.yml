@@ -1,13 +1,30 @@
-version: 2
+ersion: 2
 jobs:
-  build:
-    docker:
-      - image: debian:stretch
-    steps:
-      - checkout
-      - run:
-          name: Greeting
-          command: echo Hello, world.
-      - run:
-          name: Print the Current Time
-          command: date
+ build:
+   docker:
+     # using custom image, see .circleci/images/primary/Dockerfile
+     - image: docker/compose:1.16.1
+   working_directory: ~/tfm
+
+   environment:
+     TEST_RESULTS: /tmp/test-results
+
+   steps:
+     - checkout
+
+     - setup_remote_docker
+
+     - run:
+         name: Build docker-compose containers
+         command: |
+           docker-compose build
+
+     - run:
+         name: Start containers
+         command: |
+           docker-compose up -d
+
+     - run:
+         name: Verify it's working
+         command: |
+           docker ps
