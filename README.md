@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/artb1sh/docker-postgres-slave.svg?branch=master)](https://travis-ci.org/artb1sh/docker-postgres-slave)
-
+[![CircleCI](https://circleci.com/gh/artb1sh/docker-postgres-slave.svg?style=svg)](https://circleci.com/gh/artb1sh/docker-postgres-slave)
 # Postgres 10 Dockerized w/ Replication
 
 Master/Slave Postgres Replication in 30 seconds.
