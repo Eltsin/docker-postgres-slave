@@ -27,4 +27,4 @@ jobs:
      - run:
          name: Verify it's working
          command: |
-           - docker-compose run pg-master ping -c 5 pg-slave
+           - docker-compose run pg-master
