@@ -4,7 +4,6 @@ if [ "x$REPLICATE_FROM" == "x" ]; then
 
 cat >> ${PGDATA}/postgresql.conf <<EOF
 wal_keep_segments = $PG_WAL_KEEP_SEGMENTS
-#hot_standby = on
 EOF
 
 else
