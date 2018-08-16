@@ -1,0 +1,5 @@
+- service: pg-master
+  type: push
+  tag: master
+  image_name: docker.io/artb1sh/postgres-replication
+  registry: docker.io
