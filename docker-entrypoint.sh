@@ -13,6 +13,10 @@ if [ "x$PGPASSWORD" = "x" ]; then
     export PGPASSWORD=$POSTGRES_PASSWORD
 fi
 
+if [ "x$SLOT" = "x" ]; then
+    export SLOT=$SLOT
+fi
+
 
 
 set -Eeo pipefail
@@ -74,9 +78,8 @@ if [ "$1" = 'postgres' ]; then
 
             if [ "x$REPLICATE_FROM" == "x" ]; then
 		eval "initdb --username=postgres $POSTGRES_INITDB_ARGS"
-
 	    else
-                until pg_basebackup -h ${REPLICATE_FROM} -D ${PGDATA} -U ${POSTGRES_USER} -vP -w
+                until pg_basebackup  -S ${SLOT} -h ${REPLICATE_FROM} -D ${PGDATA} -U ${POSTGRES_USER} -vP -w
                 do
                         echo "Waiting for master to connect..."
                         sleep 1s
@@ -137,6 +140,9 @@ if [ "$1" = 'postgres' ]; then
 
 		file_env 'POSTGRES_USER' 'postgres'
 		file_env 'POSTGRES_DB' "$POSTGRES_USER"
+                file_env 'POSTGRES_DB' "$POSTGRES_USER"
+                file_env 'SLOT' "$SLOT"
+
 
 		psql=( psql -v ON_ERROR_STOP=1 )
 
@@ -146,6 +152,9 @@ if [ "$1" = 'postgres' ]; then
 			EOSQL
 			echo
 		fi
+
+                "${psql[@]}" --username postgres -c "select pg_create_physical_replication_slot('$SLOT');"
+
 
 		if [ "$POSTGRES_USER" = 'postgres' ]; then
 			op='ALTER'
@@ -157,6 +166,8 @@ if [ "$1" = 'postgres' ]; then
 		EOSQL
 		echo
 	fi
+
+
 		psql+=( --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" )
 
 		echo

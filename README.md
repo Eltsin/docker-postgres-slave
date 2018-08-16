@@ -11,7 +11,6 @@ Master/Slave Postgres Replication in 30 seconds.
   * To see container environment variable requirements, see `docker-compose.yml`.
   * To demonstrate multiple slaves:
     * `docker-compose up`
-    * `docker-compose scale pg-slave=3`
 
 ## Notes
 
