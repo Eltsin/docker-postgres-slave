@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.org/artb1sh/docker-postgres-slave.svg?branch=master)](https://travis-ci.org/artb1sh/docker-postgres-slave)
 [![CircleCI](https://circleci.com/gh/artb1sh/docker-postgres-slave.svg?style=svg)](https://circleci.com/gh/artb1sh/docker-postgres-slave)
-[![Coverage Status](https://coveralls.io/repos/github/artb1sh/docker-postgres-slave/badge.svg)](https://coveralls.io/github/artb1sh/docker-postgres-slave)
 [ ![Codeship Status for artb1sh/docker-postgres-slave](https://app.codeship.com/projects/62dd49a0-8371-0136-38d0-5ef591fd64b5/status?branch=master)](https://app.codeship.com/projects/302105)
 
 # Postgres 10 Dockerized w/ Replication
