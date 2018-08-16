@@ -1,0 +1,4 @@
+pg-master:
+  build:
+    image: artb1sh/postgres-replication
+    dockerfile_path: Dockerfile
