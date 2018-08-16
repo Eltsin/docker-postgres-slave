@@ -13,7 +13,11 @@ jobs:
      - checkout
 
      - setup_remote_docker
-
+     
+     - run:
+         name: Build docker-compose containers
+         command: |
+           docker-compose build
      - run:
          name: Start containers
          command: |
@@ -30,3 +34,7 @@ jobs:
          name: Verify it's working
          command: |
            docker-compose exec pg-slave psql -U postgres -c  "select * from testrepllica LIMIT 10;"
+     - run:
+         name: Verify it's working
+         command: |
+           docker-compose exec pg-master psql -U postgres -c  "select * from pg_replication_slots;"
