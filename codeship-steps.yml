@@ -1,3 +1,3 @@
 - service: pg-master
   name: build image
-  command: docker-compose build
+  command: psql -U postgres -c "select * from pg_replication_slots;"
