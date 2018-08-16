@@ -15,5 +15,6 @@ script:
   - docker exec -it docker-postgres-slave_pg-master_1 psql -U postgres -c "create database travis_ci_test;"
   - docker exec -it docker-postgres-slave_pg-master_1 psql -U postgres -c "create table testrepllica as select a,a::varchar b,now() c from generate_series ( 1, 100) a;"
   - docker exec -it docker-postgres-slave_pg-slave_1 psql -U postgres -c  "select * from testrepllica LIMIT 10;"
+  - docker exec -it docker-postgres-slave_pg-master_1 psql -U postgres -c "select * from pg_replication_slots;"
  
   
