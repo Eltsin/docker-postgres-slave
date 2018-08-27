@@ -15,7 +15,6 @@ Master/Slave Postgres Replication in 30 seconds.
 ## Notes
 
    * No additional replication user is setup - the postgres admin user is used. This means the superuser credentials must be identical on the master and all slaves.
-   * setup-replication.sh is only executed when a container's data volume is first initialized.
    * REPLICATE_FROM environment variable is only used during container initialization - if the master changes after the database has been initialized, you'll need to manually adjust the recovery.conf file in the slave containers' data volume.
    * SLOT - replication slots. They can be used to make WAL archiving and streaming replication more robust and efficient.
    * Configuration:
